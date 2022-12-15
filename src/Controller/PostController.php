@@ -50,8 +50,10 @@ class PostController extends AbstractController
     #[Route('/post/{id<[0-9]+>}')]
     public function show(Post $post): Response
     {
+        dd($post->getComments());
         return $this->render('home/show.html.twig', [
-            'post' => $post
+            'post' => $post,
+            'comment' => $post->getComments()
         ]);
     }
 }

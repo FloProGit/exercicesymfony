@@ -38,11 +38,11 @@ class UserFixtures extends Fixture
                 ->setEmail($faker->email())
                 ->setPassword($this->hasher->hashPassword($user, 'password'))
                 ->setRoles(['ROLE_USER']);
-
+                $this->addReference('user' . $i, $user);
             $manager->persist($user);
         }
 
-        for($i = 0; $i < 5; $i++) {
+        for($i = 5; $i < 10; $i++) {
 
             $user = new User;
             $user->setusername($faker->userName())
@@ -50,7 +50,7 @@ class UserFixtures extends Fixture
                 ->setPassword($this->hasher->hashPassword($user, 'password'))
                 ->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
 
-            $this->addReference('admin' . $i, $user);
+            $this->addReference('user' . $i, $user);
 
             $manager->persist($user);
         }
